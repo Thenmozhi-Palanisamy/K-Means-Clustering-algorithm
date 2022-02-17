@@ -8,23 +8,48 @@ To write a python program to implement K-Means Clustering Algorithm.
 ## Algorithm:
 
 ### Step1
-<br>
+<br>import the necessary package
 
 ### Step2
-<br>
+<br>read the csv file
 
 ### Step3
-<br>
+<br>scatter plot the applicant income and loan amount
 
 ### Step4
-<br>
+<br>obtain the k main cluster for 2 classes
 
 ### Step5
-<br>
+<br>predict the cluster group of application income and loan amount
 
 ## Program:
 ```
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+import seaborn as sns
+import warnings
+warnings.filterwarnings('ignore')
 
+x1 = pd.read_csv('clustering.csv')
+print(x1.head(2))
+x2 = x1.loc[:, ['ApplicantIncome','LoanAmount']]
+print(x2.head(2))
+
+x = x2.values
+sns.scatterplot(x[:,0], x[:,1])
+plt.xlabel('Income')
+plt.ylabel('Loan')
+plt.show()
+
+kmean =KMeans(n_clusters=4)
+kmean.fit(x)
+
+print('Clusters Centers:', kmean.cluster_centers_)
+print('Labels:', kmean.labels_)
+
+predicted_class = kmean.predict([[9000,120]])
+print('The cluster group for Applicant Income 9000 and Loanamount', predicted_class)
 
 
 
@@ -32,6 +57,7 @@ To write a python program to implement K-Means Clustering Algorithm.
 
 ```
 ## Output:
+![output](.//KMEAN.png)
 
 ### Insert your output
 
